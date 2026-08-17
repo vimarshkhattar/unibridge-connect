@@ -43,9 +43,12 @@ function Discover() {
           .join(" ")
           .toLowerCase()
           .includes(q);
-      const matchesUni = !active.university || s.university === active.university;
-      const matchesYear = !active.year || s.year === active.year;
-      const matchesLang = !active.language || s.languages.includes(active.language);
+      const uni = active["university"];
+      const year = active["year"];
+      const lang = active["language"];
+      const matchesUni = !uni || s.university === uni;
+      const matchesYear = !year || s.year === year;
+      const matchesLang = !lang || s.languages.includes(lang);
       return matchesQuery && matchesUni && matchesYear && matchesLang;
     });
   }, [query, active]);

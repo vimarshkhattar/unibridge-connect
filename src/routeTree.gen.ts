@@ -11,7 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
+import { Route as AppAssistantRouteImport } from './routes/_app/assistant'
+import { Route as AppConnectionsRouteImport } from './routes/_app/connections'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as AppDiscoverRouteImport } from './routes/_app/discover'
+import { Route as AppEventsRouteImport } from './routes/_app/events'
+import { Route as AppGuidesRouteImport } from './routes/_app/guides'
+import { Route as AppProfileRouteImport } from './routes/_app/profile'
+import { Route as AppSettingsRouteImport } from './routes/_app/settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,32 +29,117 @@ const AppRoute = AppRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppAssistantRoute = AppAssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConnectionsRoute = AppConnectionsRouteImport.update({
+  id: '/connections',
+  path: '/connections',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
+const AppDiscoverRoute = AppDiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEventsRoute = AppEventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppGuidesRoute = AppGuidesRouteImport.update({
+  id: '/guides',
+  path: '/guides',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/assistant': typeof AppAssistantRoute
+  '/connections': typeof AppConnectionsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/discover': typeof AppDiscoverRoute
+  '/events': typeof AppEventsRoute
+  '/guides': typeof AppGuidesRoute
+  '/profile': typeof AppProfileRoute
+  '/settings': typeof AppSettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/assistant': typeof AppAssistantRoute
+  '/connections': typeof AppConnectionsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/discover': typeof AppDiscoverRoute
+  '/events': typeof AppEventsRoute
+  '/guides': typeof AppGuidesRoute
+  '/profile': typeof AppProfileRoute
+  '/settings': typeof AppSettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
+  '/_app/assistant': typeof AppAssistantRoute
+  '/_app/connections': typeof AppConnectionsRoute
   '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/discover': typeof AppDiscoverRoute
+  '/_app/events': typeof AppEventsRoute
+  '/_app/guides': typeof AppGuidesRoute
+  '/_app/profile': typeof AppProfileRoute
+  '/_app/settings': typeof AppSettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard'
+  fullPaths:
+    | '/'
+    | '/assistant'
+    | '/connections'
+    | '/dashboard'
+    | '/discover'
+    | '/events'
+    | '/guides'
+    | '/profile'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard'
-  id: '__root__' | '/' | '/_app' | '/_app/dashboard'
+  to:
+    | '/'
+    | '/assistant'
+    | '/connections'
+    | '/dashboard'
+    | '/discover'
+    | '/events'
+    | '/guides'
+    | '/profile'
+    | '/settings'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/_app/assistant'
+    | '/_app/connections'
+    | '/_app/dashboard'
+    | '/_app/discover'
+    | '/_app/events'
+    | '/_app/guides'
+    | '/_app/profile'
+    | '/_app/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -71,6 +163,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/assistant': {
+      id: '/_app/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AppAssistantRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/connections': {
+      id: '/_app/connections'
+      path: '/connections'
+      fullPath: '/connections'
+      preLoaderRoute: typeof AppConnectionsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/dashboard': {
       id: '/_app/dashboard'
       path: '/dashboard'
@@ -78,15 +184,64 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/discover': {
+      id: '/_app/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof AppDiscoverRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/events': {
+      id: '/_app/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof AppEventsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/guides': {
+      id: '/_app/guides'
+      path: '/guides'
+      fullPath: '/guides'
+      preLoaderRoute: typeof AppGuidesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/profile': {
+      id: '/_app/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppAssistantRoute: typeof AppAssistantRoute
+  AppConnectionsRoute: typeof AppConnectionsRoute
   AppDashboardRoute: typeof AppDashboardRoute
+  AppDiscoverRoute: typeof AppDiscoverRoute
+  AppEventsRoute: typeof AppEventsRoute
+  AppGuidesRoute: typeof AppGuidesRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppSettingsRoute: typeof AppSettingsRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAssistantRoute: AppAssistantRoute,
+  AppConnectionsRoute: AppConnectionsRoute,
   AppDashboardRoute: AppDashboardRoute,
+  AppDiscoverRoute: AppDiscoverRoute,
+  AppEventsRoute: AppEventsRoute,
+  AppGuidesRoute: AppGuidesRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppSettingsRoute: AppSettingsRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
