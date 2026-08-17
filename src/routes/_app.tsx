@@ -40,7 +40,7 @@ const secondaryNav: NavItem[] = [
   { label: "Settings", to: "/settings", icon: Settings },
 ];
 
-function NavList({ onNavigate }: { onNavigate?: () => void }) {
+function NavList({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   const pathname = useRouterState({ select: (r) => r.location.pathname });
 
   const renderItem = (item: NavItem) => {
@@ -77,7 +77,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarBody({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   return (
     <div className="flex h-full flex-col gap-6 p-4">
       <Link to="/" onClick={onNavigate} className="px-1">
