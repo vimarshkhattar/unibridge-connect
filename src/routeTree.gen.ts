@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as SigninRouteImport } from './routes/signin'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AppAssistantRouteImport } from './routes/_app/assistant'
 import { Route as AppConnectionsRouteImport } from './routes/_app/connections'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
@@ -27,6 +30,21 @@ const IndexRoute = IndexRouteImport.update({
 } as any)
 const AppRoute = AppRouteImport.update({
   id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SigninRoute = SigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppAssistantRoute = AppAssistantRouteImport.update({
@@ -72,6 +90,9 @@ const AppSettingsRoute = AppSettingsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/onboarding': typeof OnboardingRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
   '/assistant': typeof AppAssistantRoute
   '/connections': typeof AppConnectionsRoute
   '/dashboard': typeof AppDashboardRoute
@@ -83,6 +104,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/onboarding': typeof OnboardingRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
   '/assistant': typeof AppAssistantRoute
   '/connections': typeof AppConnectionsRoute
   '/dashboard': typeof AppDashboardRoute
@@ -96,6 +120,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
+  '/onboarding': typeof OnboardingRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
   '/_app/assistant': typeof AppAssistantRoute
   '/_app/connections': typeof AppConnectionsRoute
   '/_app/dashboard': typeof AppDashboardRoute
@@ -109,6 +136,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/onboarding'
+    | '/signin'
+    | '/signup'
     | '/assistant'
     | '/connections'
     | '/dashboard'
@@ -120,6 +150,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/onboarding'
+    | '/signin'
+    | '/signup'
     | '/assistant'
     | '/connections'
     | '/dashboard'
@@ -132,6 +165,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_app'
+    | '/onboarding'
+    | '/signin'
+    | '/signup'
     | '/_app/assistant'
     | '/_app/connections'
     | '/_app/dashboard'
@@ -145,6 +181,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
+  OnboardingRoute: typeof OnboardingRoute
+  SigninRoute: typeof SigninRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -161,6 +200,27 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_app/assistant': {
@@ -249,6 +309,9 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
+  OnboardingRoute: OnboardingRoute,
+  SigninRoute: SigninRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
